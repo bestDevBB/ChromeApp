@@ -5,11 +5,12 @@ const toDoList = document.getElementById("todo-list");
 
 const TODOS_KEY = "todos";
 
-const toDos = [];
+// const toDos = [];
 // To Do를 배열로 묶어 보과하기 위해 빈 배열을 생성
+let toDos = [];
 
 function saveToDos() {
-    localStorage.setItem(TODOS_KEY , JSON.stringify(toDos));
+    localStorage.setItem(TODOS_KEY, JSON.stringify(toDos));
     // localStorage.setItem("todos", toDos);
     // toDos는 Array이므로 JSON.stringify()를 이용하여 String 형태로 변환해줌
     // localstorage는 문자열만 저장할 수 있기 때문에
@@ -64,9 +65,11 @@ const savedToDos = localStorage.getItem(TODOS_KEY);
 if(savedToDos) { // savedToDos가 존재한다면
     const parsedToDos = JSON.parse(savedToDos);
     // 살아있는 JS Object로 변환!
+    toDos = parsedToDos; // 기존꺼가 사라지지 않고 복원되게 함
     
     // console.log(parsedToDos); // (3) ['a', 'b', 'c']
 
     // parsedToDos.forEach(sayHello);
-    parsedToDos.forEach(item => console.log("This is the turn of", item));
+    // parsedToDos.forEach(item => console.log("This is the turn of", item));
+    parsedToDos.forEach(paintToDo);
 }
