@@ -1,3 +1,5 @@
+"use strict";
+
 const images = [
     "0.jpeg",
     "1.jpeg",
