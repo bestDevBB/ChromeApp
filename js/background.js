@@ -7,14 +7,9 @@ const images = [
 ];
 
 const chosenImage = images[Math.floor(Math.random() * images.length)];
-
 const bgImage = document.createElement("img");
-
-// console.log(bgImage); // <img>
-
 bgImage.src = `img/${chosenImage}`;
-
-// console.log(bgImage); // <img src="/img/x.jpeg">
+bgImage.classList.add("bg"); // class 추가
 
 // body에 추가
 document.body.appendChild(bgImage);

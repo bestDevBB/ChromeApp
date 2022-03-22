@@ -27,13 +27,13 @@ function deleteToDo(event) {
 function paintToDo(newTodo) { // object를 받음
     const li = document.createElement("li");
     li.id = newTodo.id;
-    const span = document.createElement("span");
-    span.innerText = newTodo.text;
     const button = document.createElement("button");
     button.innerText = "❌";
+    const span = document.createElement("span");
+    span.innerText = newTodo.text;
     button.addEventListener("click", deleteToDo);
-    li.appendChild(span);
     li.appendChild(button); // span을 추가한 후 button을 추가
+    li.appendChild(span);
     toDoList.appendChild(li);
 };
 

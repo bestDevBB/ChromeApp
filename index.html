@@ -8,18 +8,20 @@
     <title>Momentum App</title>
 </head>
 <body>
-    <form id="login-form" class="hidden">
-        <input required maxlength="15" type="text" placeholder="What is your name?" />
-        <input type="submit" value="Log In" />
-    </form>
     <h2 id="clock">00:00:00</h2>
+    <form id="login-form" class="hidden">
+        <input id="nameWrite" required maxlength="15" type="text" placeholder="What is your name?" />
+        <input id="loginBtn" type="submit" value="Login" />
+    </form>
     <h1 id="greeting" class="hidden"></h1>
     <form id="todo-form">
         <input type="text" placeholder="Write a To Do and Press Enter!" required />
     </form>
-    <ul id="todo-list">
-        <!-- <li></li> -->
-    </ul>
+    <!-- <form id="todo-list-form"> -->
+        <ul id="todo-list">
+            <!-- <li></li> -->
+        </ul>
+    <!-- </form> -->
     <div id="quote">
         <span></span>
         <span></span>
