@@ -1,17 +1,14 @@
 const toDoForm = document.getElementById("todo-form");
 const toDoInput = toDoForm.querySelector("input");
-// const toDoInput = document.querySelector("#todo-form input");
 const toDoList = document.getElementById("todo-list");
 
 const TODOS_KEY = "todos";
 
-// const toDos = [];
 // To Do를 배열로 묶어 보과하기 위해 빈 배열을 생성
 let toDos = [];
 
 function saveToDos() {
     localStorage.setItem(TODOS_KEY, JSON.stringify(toDos));
-    // localStorage.setItem("todos", toDos);
     // toDos는 Array이므로 JSON.stringify()를 이용하여 String 형태로 변환해줌
     // localstorage는 문자열만 저장할 수 있기 때문에
 };
@@ -19,13 +16,17 @@ function saveToDos() {
 function deleteToDo(event) {
     const li = event.target.parentElement;
     // target은 button, button은 부모를 가지고 있음. li가 button의 부모
+    
     li.remove();
+    toDos = toDos.filter(toDo => toDo.id !== parseInt(li.id));
+    saveToDos();
 };
 
-function paintToDo(newTodo) {
+function paintToDo(newTodo) { // object를 받음
     const li = document.createElement("li");
+    li.id = newTodo.id;
     const span = document.createElement("span");
-    span.innerText = newTodo;
+    span.innerText = newTodo.text;
     const button = document.createElement("button");
     button.innerText = "❌";
     button.addEventListener("click", deleteToDo);
@@ -42,34 +43,28 @@ function handleToDoSubmit(event) {
     // input의 현재 value를 새로운 변수에 복사
     // 비우기 전의 값
 
-    // console.log(toDoInput.value);
     toDoInput.value = "";
-    // console.log(newToDo, toDoInput.value);
 
-    toDos.push(newToDo);
-    paintToDo(newToDo);
+    const newTodoObj = {
+        text: newToDo,
+        id: Date.now(),
+    }
+    
+    toDos.push(newTodoObj);
+    paintToDo(newTodoObj);
     saveToDos();
     
 };
 
 toDoForm.addEventListener("submit", handleToDoSubmit);
 
-// function sayHello(item) {
-//     console.log("This is the turn of", item);
-// };
-
-
 const savedToDos = localStorage.getItem(TODOS_KEY);
-// console.log(savedToDos); // ["a","b","c"]
 
 if(savedToDos) { // savedToDos가 존재한다면
     const parsedToDos = JSON.parse(savedToDos);
     // 살아있는 JS Object로 변환!
     toDos = parsedToDos; // 기존꺼가 사라지지 않고 복원되게 함
-    
-    // console.log(parsedToDos); // (3) ['a', 'b', 'c']
 
-    // parsedToDos.forEach(sayHello);
-    // parsedToDos.forEach(item => console.log("This is the turn of", item));
     parsedToDos.forEach(paintToDo);
+    // forEach 함수는 paintToDo를 parsedToDos 배열의 요소마다 실행함
 }
