@@ -29,6 +29,7 @@ function paintToDo(newTodo) { // object를 받음
     li.id = newTodo.id;
     const button = document.createElement("button");
     button.innerText = "❌";
+    button.classList.add("todo-delete-btn");
     const span = document.createElement("span");
     span.innerText = newTodo.text;
     button.addEventListener("click", deleteToDo);

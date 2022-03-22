@@ -7,10 +7,24 @@ function onGeoOk(position) {
     const lon = position.coords.longitude;
     const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric`
     fetch(url).then(response => response.json()).then(data => {
+        console.log(data);
         // console.log(data.name, data.weather[0].main); // weather은 array임
         const weather = document.querySelector("#weather span:first-child");
         const city = document.querySelector("#weather span:last-child");
-        weather.innerText = `${data.weather[0].main} / ${data.main.temp}`;
+        const weatherConditions = data.weather[0].main;
+        if(weatherConditions === "Clear") {
+            weather.innerText = `☀️ ${Math.round(data.main.temp)}°C`;
+        } else if(weatherConditions === "Clouds") {
+            weather.innerText = `☁️ ${Math.round(data.main.temp)}°C`;
+        } else if(weatherConditions === "Rain") {
+            weather.innerText = `🌧 ${Math.round(data.main.temp)}°C`;
+        } else if(weatherConditions === "Snow") {
+            weather.innerText = `❄️ ${Math.round(data.main.temp)}°C`;
+        } else if(weatherConditions === "CloudsThunderstorm") {
+            weather.innerText = `⚡️ ${Math.round(data.main.temp)}°C`;
+        }
+        // weather.innerText = `${data.weather[0].main} / ${data.main.temp}`;
+        
         city.innerText = data.name;
     }); // 요청. DevTool의 Network에서 request를 확인할 수 있음!
 };
