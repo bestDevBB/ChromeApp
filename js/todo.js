@@ -6,7 +6,7 @@ const toDoList = document.getElementById("todo-list");
 
 const TODOS_KEY = "todos";
 
-// To Do를 배열로 묶어 보과하기 위해 빈 배열을 생성
+// To Do를 배열로 묶어 보관하기 위해 빈 배열을 생성
 let toDos = [];
 
 function saveToDos() {
