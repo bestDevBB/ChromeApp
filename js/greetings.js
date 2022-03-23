@@ -9,7 +9,7 @@ const USERNAME_KEY = "username";
 
 function onLoginBtnSubmit(event) {
     event.preventDefault();
-    loginForm.classList.add("hidden"); // login-form 폼에 hidden이라는 class를 추가
+    loginForm.classList.add(HIDDEN_CLASSNAME); // login-form 폼에 hidden이라는 class를 추가
     const username = loginInput.value;
     localStorage.setItem(USERNAME_KEY, username); // key / value
     paintGreetings(username);
