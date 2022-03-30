@@ -31,6 +31,7 @@ function deleteToDo(event) {
 // 새로운 todo 추가시 삭제 버튼과 작성한 todo 목록이 생성
 // todo list(ul)에 추가됨
 function paintToDo(newTodo) { // object를 받음
+    console.log(newTodo.id);
     const li = document.createElement("li");
     li.id = newTodo.id;
     const button = document.createElement("button");
